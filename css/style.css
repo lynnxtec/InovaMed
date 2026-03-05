@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url("../img/teste.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: rgba(11, 79, 108, 0.2);  /* Azul marinho com transparência */
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);          /* Efeito vidro fosco */
+    border: 2px solid rgba(44, 125, 160, 0.5);
+    border-radius: 20px;
+    padding: 30px;
+    width: 350px;
+    height: 400px;
+            
+    /* Sombra para dar profundidade */
+    box-shadow: 0 15px 35px rgba(12, 45, 59, 0.3);
+            
+    /* Centralizar o conteúdo interno */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    text-align: center;
+    margin-bottom: 50px;
+    font-weight: 600;
+
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    color: #000000;
+    font-weight: 10;
+}
