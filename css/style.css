@@ -1,53 +1,191 @@
-body {
-    font-family: Arial, sans-serif;
-    background-image: url("../img/teste.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.container {
-    background: rgba(11, 79, 108, 0.2);  /* Azul marinho com transparência */
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);          /* Efeito vidro fosco */
-    border: 2px solid rgba(44, 125, 160, 0.5);
-    border-radius: 20px;
-    padding: 30px;
-    width: 350px;
-    height: 400px;
-            
-    /* Sombra para dar profundidade */
-    box-shadow: 0 15px 35px rgba(12, 45, 59, 0.3);
-            
-    /* Centralizar o conteúdo interno */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    min-height: 100vh;
     display: flex;
     align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-wrapper {
+    display: flex;
     flex-direction: column;
-    justify-content: center;
-}
-
-h2 {
-    display: flex;
-    justify-content: center;
     align-items: center;
-    color: #000;
-    text-align: center;
-    margin-bottom: 50px;
-    font-weight: 600;
-
+    justify-content: center;
+    width: 100%;
+    max-width: 380px;
 }
 
+/* Logo fora do box - COLADA NO BOX */
+.logo-outside {
+    text-align: center;
+    margin-bottom: 2px;
+}
+
+.logo-outside img {
+    max-width: 150px;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Box de login - SEM ESPAÇO SUPERIOR */
+.container {
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 25px 28px 30px 28px;
+    border: 1px solid #e8ecef;
+}
+
+/* Título Login - SEM MARGEM SUPERIOR */
+.container h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2c3e50;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+/* Formulário */
 .form-group {
-    margin-bottom: 10px;
+    margin-bottom: 18px;
 }
 
 label {
     display: block;
-    color: #000000;
-    font-weight: 10;
+    margin-bottom: 6px;
+    color: #2c3e50;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d0d7de;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #ffffff;
+    transition: all 0.2s;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: #2c7da0;
+    box-shadow: 0 0 0 2px rgba(44, 125, 160, 0.1);
+}
+
+/* Checkbox */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin: 12px 0 18px 0;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.checkbox-group label {
+    margin-bottom: 0;
+    font-size: 13px;
+    color: #5a6e7c;
+    cursor: pointer;
+    font-weight: normal;
+}
+
+/* Botão */
+button[type="submit"] {
+    width: 100%;
+    background-color: #2c7da0;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button[type="submit"]:hover {
+    background-color: #236b8a;
+}
+
+/* Links */
+.forgot-link,
+.register-link {
+    text-align: center;
+    margin-top: 12px;
+    font-size: 13px;
+    color: #5a6e7c;
+}
+
+.register-link {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #e8ecef;
+}
+
+.container a {
+    color: #2c7da0;
+    text-decoration: none;
+}
+
+.container a:hover {
+    text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+    .login-wrapper {
+        max-width: 100%;
+    }
+    
+    .logo-outside {
+        margin-bottom: 1px;
+    }
+    
+    .logo-outside img {
+        max-width: 130px;
+    }
+    
+    .container {
+        padding: 20px 22px 25px 22px;
+    }
+    
+    .container h2 {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+    
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    input[type="email"],
+    input[type="password"] {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+    
+    button[type="submit"] {
+        padding: 9px;
+        font-size: 14px;
+    }
 }
