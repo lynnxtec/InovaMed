@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function inicializarSistema() {
-    console.log('📄 Inicializando sistema...');
+    alert('Inicializando sistema...');
     
     // Cria usuário padrão se não existir
     if (!localStorage.getItem('usuarios')) {
@@ -17,14 +17,12 @@ function inicializarSistema() {
     configurarFormularioLogin();
 }
 
-// ==============================================
-// CONFIGURAÇÃO DO FORMULÁRIO
-// ==============================================
+//Sistema de criar o formulário para logar
 function configurarFormularioLogin() {
     const form = document.getElementById('form-login');
     
     if (!form) {
-        console.error('❌ Formulário não encontrado!');
+        console.error('Formulário não encontrado!');
         return;
     }
     
@@ -33,12 +31,10 @@ function configurarFormularioLogin() {
         processarLogin();
     });
     
-    console.log('✅ Formulário configurado!');
+    console.log('Formulário configurado!');
 }
 
-// ==============================================
-// PROCESSAMENTO DO LOGIN
-// ==============================================
+//Sistema de login pae
 function processarLogin() {
     // Pega os valores dos campos
     const email = document.getElementById('email').value.trim();
@@ -134,7 +130,7 @@ function criarUsuarioPadrao() {
     ];
     
     localStorage.setItem('usuarios', JSON.stringify(usuarios));
-    console.log('👤 Usuários padrão criados:', usuarios.length);
+    console.log('Usuários padrão criados:', usuarios.length);
 }
 
 // ==============================================
