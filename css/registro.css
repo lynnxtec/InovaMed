@@ -14,39 +14,43 @@ body {
     padding: 20px;
 }
 
-.login-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 450px;
-}
-
-/* Logo fora do box */
-.logo-outside {
-    text-align: center;
-    margin-bottom: 8px;
-}
-
-.logo-outside img {
-    max-width: 150px;
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* Box de login */
 .container {
     width: 100%;
+    max-width: 450px;
     background-color: #ffffff;
     border-radius: 12px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    padding: 30px 28px;
+    padding: 35px 30px;
     border: 1px solid #e8ecef;
 }
 
-/* Título Login */
+/* Logo InovaMed no topo */
+.container h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.container h1::before {
+    content: "🏥";
+    font-size: 48px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.container h1::after {
+    content: "imagem";
+    display: block;
+    font-size: 11px;
+    font-weight: 400;
+    color: #8a9aa8;
+    margin-top: 4px;
+    margin-bottom: 20px;
+}
+
+/* Título Criar Conta */
 .container h2 {
     font-size: 24px;
     font-weight: 600;
@@ -85,6 +89,7 @@ label {
     font-size: 14px;
 }
 
+input[type="text"],
 input[type="email"],
 input[type="password"] {
     width: 100%;
@@ -96,6 +101,7 @@ input[type="password"] {
     transition: all 0.2s;
 }
 
+input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus {
     outline: none;
@@ -103,27 +109,20 @@ input[type="password"]:focus {
     box-shadow: 0 0 0 2px rgba(44, 125, 160, 0.1);
 }
 
-/* Checkbox */
-.checkbox-group {
-    display: flex;
-    align-items: center;
-    margin: 12px 0 18px 0;
-}
-
-.checkbox-group input[type="checkbox"] {
+/* Radio Buttons */
+input[type="radio"] {
     width: 16px;
     height: 16px;
-    margin-right: 8px;
+    margin-right: 5px;
     cursor: pointer;
     accent-color: #2c7da0;
 }
 
-.checkbox-group label {
-    margin-bottom: 0;
-    font-size: 13px;
-    color: #5a6e7c;
-    cursor: pointer;
+.form-group label:has(input[type="radio"]) {
+    display: inline-block;
+    margin-right: 20px;
     font-weight: normal;
+    cursor: pointer;
 }
 
 /* Botão */
@@ -146,18 +145,11 @@ button[type="submit"]:hover {
 }
 
 /* Links */
-.forgot-link,
-.register-link {
+.container p {
     text-align: center;
     margin-top: 15px;
     font-size: 13px;
     color: #5a6e7c;
-}
-
-.register-link {
-    margin-top: 12px;
-    padding-top: 12px;
-    border-top: 1px solid #e8ecef;
 }
 
 .container a {
@@ -176,20 +168,17 @@ button[type="submit"]:hover {
         padding: 15px;
     }
     
-    .login-wrapper {
+    .container {
+        padding: 25px 22px;
         max-width: 100%;
     }
     
-    .logo-outside {
-        margin-bottom: 5px;
+    .container h1 {
+        font-size: 24px;
     }
     
-    .logo-outside img {
-        max-width: 130px;
-    }
-    
-    .container {
-        padding: 25px 22px;
+    .container h1::before {
+        font-size: 42px;
     }
     
     .container h2 {
@@ -201,6 +190,7 @@ button[type="submit"]:hover {
         margin-bottom: 15px;
     }
     
+    input[type="text"],
     input[type="email"],
     input[type="password"] {
         padding: 8px 10px;
@@ -212,18 +202,8 @@ button[type="submit"]:hover {
         font-size: 14px;
     }
     
-    .checkbox-group {
-        margin: 10px 0 15px 0;
-    }
-    
-    .forgot-link,
-    .register-link {
-        margin-top: 12px;
-        font-size: 12px;
-    }
-    
-    .register-link {
-        margin-top: 10px;
-        padding-top: 10px;
+    .form-group label:has(input[type="radio"]) {
+        margin-right: 15px;
+        font-size: 13px;
     }
 }
