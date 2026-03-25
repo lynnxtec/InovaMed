@@ -23,27 +23,29 @@ body {
     max-width: 450px;
 }
 
-/* Logo fora do box */
-.logo-outside {
-    text-align: center;
-    margin-bottom: 8px;
-}
-
-.logo-outside img {
-    max-width: 150px;
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
 /* Box de login */
 .container {
     width: 100%;
     background-color: #ffffff;
     border-radius: 12px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    padding: 30px 28px;
+    padding: 0px 30px 30px 30px;
     border: 1px solid #e8ecef;
+}
+
+/* Logo dentro do box - PRATICAMENTE NA BORDA */
+.logo-inside {
+    text-align: center;
+    margin-bottom: 5px;
+    padding-top: 25px;
+}
+
+.logo-inside img {
+    max-width: 150px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
 /* Título Login */
@@ -53,6 +55,7 @@ body {
     color: #2c3e50;
     text-align: center;
     margin-bottom: 25px;
+    margin-top: 5px;
     position: relative;
 }
 
@@ -180,21 +183,23 @@ button[type="submit"]:hover {
         max-width: 100%;
     }
     
-    .logo-outside {
-        margin-bottom: 5px;
-    }
-    
-    .logo-outside img {
-        max-width: 130px;
-    }
-    
     .container {
-        padding: 25px 22px;
+        padding: 0px 22px 25px 22px;
+    }
+    
+    .logo-inside {
+        padding-top: 20px;
+        margin-bottom: 3px;
+    }
+    
+    .logo-inside img {
+        max-width: 120px;
     }
     
     .container h2 {
         font-size: 22px;
         margin-bottom: 22px;
+        margin-top: 3px;
     }
     
     .form-group {
