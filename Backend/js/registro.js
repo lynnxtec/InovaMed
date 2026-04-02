@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Sistema de registro iniciado');
+    console.log('Sistema de registro iniciado');
     
     const form = document.getElementById('form-registro');
 
@@ -12,6 +12,38 @@ document.addEventListener('DOMContentLoaded', function() {
     const tipoMedico = document.getElementById('tipoMedico');
     const crm = document.getElementById('crm');
     const campoCRM = document.getElementById('campoCRM');
+
+    // FUNÇÃO PARA VER USUÁRIOS CADASTRADOS (NOVA)
+    window.mostrarUsuariosCadastrados = function() {
+        const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+        
+        console.log('========== USUÁRIOS CADASTRADOS ==========');
+        console.table(usuarios);
+        
+        if(usuarios.length === 0) {
+            console.log('Nenhum usuário cadastrado ainda');
+            alert('📭 Nenhum usuário cadastrado ainda');
+        } else {
+            console.log(`Total: ${usuarios.length} usuário(s)`);
+            let mensagem = `📋 Total: ${usuarios.length} usuário(s)\n\n`;
+            usuarios.forEach((u, index) => {
+                mensagem += `${index + 1}. ${u.email} - ${u.nome} (${u.tipo})\n`;
+            });
+            alert(mensagem);
+        }
+        
+        return usuarios;
+    }
+
+    // FUNÇÃO PARA LIMPAR TODOS OS USUÁRIOS (NOVA)
+    window.limparTodosUsuarios = function() {
+        if(confirm('⚠️ Isso vai apagar TODOS os usuários cadastrados. Continuar?')) {
+            localStorage.removeItem('usuarios');
+            console.log('🗑️ Todos os usuários foram removidos');
+            alert('✅ Todos os usuários foram removidos!');
+            location.reload(); // Recarrega a página
+        }
+    }
 
     //mensagem de erro pra quando o usuario burro colocar algo errado aparecer bonitinho a mensagem na tela
     function criarMensagemErro(campo, texto) {
@@ -169,13 +201,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        // 6. Verificar se email já existe (AQUI É ONDE SEU ERRO ESTAVA)
+        // 6. Verificar se email já existe (USANDO JSON DO LOCALSTORAGE)
         const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
         
         // Mostrar no console para depuração
         console.log('📋 Usuários cadastrados:', usuarios);
         console.log('📧 Email digitado:', email.value.trim());
-        console.log('🔍 Email já existe?', usuarios.some(u => u.email === email.value.trim()));
         
         if (usuarios.some(u => u.email === email.value.trim())) {
             criarMensagemErro(email, 'Este e-mail já está cadastrado');
@@ -200,10 +231,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Criar usuário
         const novoUsuario = {
-            id: usuarios.length + 1,
+            id: Date.now(), // Usando timestamp para ID único
             nome: nome.value.trim(),
             email: email.value.trim(),
-            senha: btoa(senha.value),
+            senha: btoa(senha.value), // Senha codificada em base64
             tipo: tipoSelecionado,
             dataCadastro: new Date().toISOString(),
             ativo: true
@@ -213,11 +244,16 @@ document.addEventListener('DOMContentLoaded', function() {
             novoUsuario.crm = crm.value.trim();
         }
         
+        // Adicionar ao array e salvar no JSON
         usuarios.push(novoUsuario);
         localStorage.setItem('usuarios', JSON.stringify(usuarios));
         
-        console.log('✅ Usuário cadastrado:', novoUsuario);
-        console.log('📦 Total de usuários:', usuarios.length);
+        console.log('✅ Usuário cadastrado com sucesso!');
+        console.log('📦 Dados salvos:', novoUsuario);
+        console.log('📊 Total de usuários no sistema:', usuarios.length);
+        
+        // Mostrar o JSON salvo (para você ver como fica)
+        console.log('📁 JSON salvo:', localStorage.getItem('usuarios'));
         
         // Mostrar mensagem de sucesso
         mostrarMensagemGeral('✅ Cadastro realizado com sucesso! Redirecionando...', 'sucesso');
@@ -235,5 +271,12 @@ document.addEventListener('DOMContentLoaded', function() {
     function validarEmail(email) {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return regex.test(email);
+    }
+
+    // Mostrar no console quantos usuários já existem ao carregar a página
+    const usuariosExistentes = JSON.parse(localStorage.getItem('usuarios')) || [];
+    console.log(`📊 Sistema carregado com ${usuariosExistentes.length} usuário(s) cadastrado(s)`);
+    if(usuariosExistentes.length > 0) {
+        console.log('📧 Emails cadastrados:', usuariosExistentes.map(u => u.email));
     }
 });
