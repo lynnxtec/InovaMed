@@ -1,0 +1,14 @@
+{
+    "nome": "InovaMed",
+    "versao": "1.0.0",
+    "pacientes": [],
+    "medicos": [],
+    "consultas": [],
+    "configuracoes": {
+      "horario_funcionamento": {
+        "inicio": "08:00",
+        "fim": "18:00"
+      },
+      "dias_uteis": ["segunda", "terca", "quarta", "quinta", "sexta"]
+    }
+  }
