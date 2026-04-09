@@ -1,12 +1,30 @@
-alert('Sistema de login iniciado...');
-
-
+document.getElementById('form-login').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Busca o usuário digitado
+    const usuario = usuarios.find(u => u.email === email && u.senha === senha);
+    
+    if (usuario) {
+        //Cria a sessão com os dados do usuário
+        const sessao = {
+            id: usuario.id,
+            nome: usuario.nome,
+            email: usuario.email,
+            tipo: usuario.tipo
+        };
+        
+        //SALVA os dados no navegador (localStorage)
+        localStorage.setItem('sessao', JSON.stringify(sessao));
+        
+        //REDIRECIONA para o dashboard
+        window.location.href = 'dashboard.html';
+    }
+});
 document.addEventListener('DOMContentLoaded', function() {
     inicializarSistema();
 });
 
 function inicializarSistema() {
-    alert('Inicializando sistema...');
     
     // Cria usuário padrão se não existir
     if (!localStorage.getItem('usuarios')) {
