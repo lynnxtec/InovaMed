@@ -4,28 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InovaMed - Esqueci a Senha</title>
+    <link rel="stylesheet" href="esquecisenha.html"><link rel="stylesheet" href="css/esquecisenha.css">
 </head>
 <body>
-    
+    <div class="login-wrapper">
+        <div class="container">
+           
+            <div class="logo-inside">
+                <img src="img/logo.inovamed-removebg-preview (1).png" alt="InovaMed Logo">
+            </div>
+            
+            <h2>Recuperar senha</h2>
+            
+            <form id="form-recuperar" onsubmit="return false;">
+                <div class="form-group">
+                    <label for="email">Digite seu email ou ID profissional</label>
+                    <input type="text" id="email" name="email" required>
+                </div>
+                
+                <button type="submit">Enviar link de recuperação</button>
+            </form>
+            
+            <p class="back-link">
+                <a href="login.html">Voltar para o login</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="../Backend/js/esquecisenha.js"></script>
 </body>
 </html>
-
-    <h1>InovaMed</h1>
-        <h2>Recuperar senha</h2>
-
-<form>
-
-    <label for="email">Digite seu email ou ID profissional</label><br>
-        <input type="text" id="email" name="email" required><br>
-
-<br>
-<button type="submit">Enviar link de recuperação</button>
-
-</form>
-
-<p>
-    <a href="login.html">Voltar para o login</a>
-</p>
-
-</body>
 </html>
