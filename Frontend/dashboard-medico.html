@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-Br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle Médico - Inova Med</title>
+</head>
+<body>
+      <!-- BARRA SUPERIOR -->
+    <div class="navbar">
+        <div class="logo">
+            InovaMed - Painel do Médico
+        </div>
+        <div class="nav-links">
+            <span id="medicoNome"></span>
+            <a href="dashboard-medico.html">📊 Dashboard</a>
+            <a href="minhas-consultas-medico.html">📅 Minhas Consultas</a>
+            <a href="meus-pacientes.html">👥 Meus Pacientes</a>
+            <a href="login-medico.html" class="logout-btn">🚪 Sair</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- CARDS DE ESTATÍSTICAS -->
+        <div class="cards">
+            <div class="card">
+                <h3>Total de Consultas Hoje</h3>
+                <div class="numero" id="totalHoje">0</div>
+            </div>
+            <div class="card">
+                <h3>Consultas Confirmadas</h3>
+                <div class="numero" id="totalConfirmadas">0</div>
+            </div>
+            <div class="card">
+                <h3>Pacientes Atendidos</h3>
+                <div class="numero" id="totalPacientes">0</div>
+            </div>
+            <div class="card">
+                <h3>Próximas Consultas</h3>
+                <div class="numero" id="proximasConsultas">0</div>
+            </div>
+        </div>
+
+        <!-- CONSULTAS DO DIA -->
+        <div class="section">
+            <h2>📅 Consultas de Hoje</h2>
+            <div id="consultasHoje">
+                <!-- Tabela será preenchida via JS -->
+            </div>
+        </div>
+
+        <!-- PRÓXIMAS CONSULTAS -->
+        <div class="section">
+            <h2>📋 Próximas Consultas</h2>
+            <div id="proximasConsultasLista">
+                <!-- Tabela será preenchida via JS -->
+            </div>
+        </div>
+
+        <!-- MEUS HORÁRIOS -->
+        <div class="section">
+            <h2>⏰ Meus Horários de Atendimento</h2>
+            <div id="meusHorarios"></div>
+            <button onclick="editarHorarios()">✏️ Editar Horários</button>
+        </div>
+    </div>
+</body>
+</html>

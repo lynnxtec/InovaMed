@@ -4,21 +4,359 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - InovaMed</title>
-    <link rel="stylesheet" href="login.css"><link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="../Frontend/dashboard.css">
+    <style>
+        /* ESTILOS PARA A GRADE DE CAMPANHAS */
+        .campanhas-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .campanha-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: block;
+        }
+
+        .campanha-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .campanha-imagem {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+        }
+
+        .campanha-conteudo {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .campanha-conteudo h3 {
+            color: #0d47a1;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .campanha-conteudo p {
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .campanha-saiba {
+            display: inline-block;
+            color: #ffd700;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        /* Responsivo */
+        @media (max-width: 1024px) {
+            .campanhas-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .campanhas-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
 <body>
-    <div id="dashboard">
-        <h1>Bem-vindo ao Sistema InovaMed</h1>
-        
-        <div id="info-usuario">
+
+    <div class="container">
+        <!-- BARRA SUPERIOR / BANNER -->
+        <div class="banner">
+            <div class="banner-slide active">
+                <div class="banner-img" style="background: linear-gradient(135deg, #0d47a1, #0d47a1); height: 400px; display: flex; align-items: center; justify-content: center;">
+                    <div style="text-align: center; color: white;">
+                        <h2 style="font-size: 48px;">InovaMed</h2>
+                        <p style="font-size: 24px; margin-top: 20px;">Cuidando da sua saúde com excelência</p>
+                        <p style="font-size: 18px; margin-top: 10px;">Nosso site está em fase de teste!</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div id="consultas">
-            <button id="agendar-consulta">Agendar Consulta</button>
-            <button id="ver-consultas">Ver Consultas Agendadas</button>
-            <button id="editar-perfil">Editar Perfil</button>
-            <button id="sair">Sair</button>
+        <!-- MENU DE NAVEGAÇÃO -->
+        <div class="nav-menu">
+            <a href="index.html">🏠 Início</a>
+            <a href="dashboard.html">📊 Dashboard</a>
+            <a href="consultas.html">📅 Consultas</a>
+            <a href="pacientes.html">👥 Pacientes</a>
+            <a href="medicos.html">👨‍⚕️ Médicos</a>
+            <a href="perfil.html">👤 Meu Perfil</a>
+            <a href="login.html" class="btn-sair">🚪 Sair</a>
+        </div>
+
+        <!-- INFORMAÇÕES DO USUÁRIO -->
+        <div class="user-info">
+            <h3>Bem-vindo, [Nome do Usuário]!</h3>
+            <p>Email: [email@exemplo.com] | Tipo: [Paciente/Médico]</p>
+            <p>Último acesso: [data/hora]</p>
+        </div>
+
+        <!-- DASHBOARD GRID PRINCIPAL -->
+        <div class="dashboard-grid">
+            
+            <!-- SEÇÃO 1: MARCAR CONSULTA -->
+            <div class="section">
+                <h2>📝 Marcar Nova Consulta</h2>
+                <form id="appointmentForm">
+                    <div class="form-group">
+                        <label for="patientName">Nome do Paciente:</label>
+                        <input type="text" id="patientName" placeholder="Digite seu nome completo" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="appointmentDate">Data da Consulta:</label>
+                        <input type="date" id="appointmentDate" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="appointmentTime">Horário:</label>
+                        <input type="time" id="appointmentTime" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="doctorName">Médico:</label>
+                        <select id="doctorName" required>
+                            <option value="">Selecione um médico...</option>
+                            <option value="Dr. Carlos Silva">Dr. Carlos Silva - Cardiologia</option>
+                            <option value="Dra. Ana Oliveira">Dra. Ana Oliveira - Pediatria</option>
+                            <option value="Dr. Roberto Santos">Dr. Roberto Santos - Dermatologia</option>
+                            <option value="Dra. Mariana Costa">Dra. Mariana Costa - Ginecologia</option>
+                            <option value="Dr. Paulo Mendes">Dr. Paulo Mendes - Ortopedia</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="appointmentType">Especialidade:</label>
+                        <select id="appointmentType" required>
+                            <option value="">Selecione uma especialidade...</option>
+                            <option value="Clínica Geral">Clínica Geral</option>
+                            <option value="Cardiologia">Cardiologia</option>
+                            <option value="Dermatologia">Dermatologia</option>
+                            <option value="Oftalmologia">Oftalmologia</option>
+                            <option value="Odontologia">Odontologia</option>
+                            <option value="Pediatria">Pediatria</option>
+                            <option value="Ginecologia">Ginecologia</option>
+                            <option value="Ortopedia">Ortopedia</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="observacoes">Observações (opcional):</label>
+                        <textarea id="observacoes" rows="3" placeholder="Informe seus sintomas ou observações..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">✅ Marcar Consulta</button>
+                </form>
+            </div>
+
+            <!-- SEÇÃO 2: PRÓXIMAS CONSULTAS -->
+            <div class="section">
+                <h2>📋 Próximas Consultas</h2>
+                <div class="consultas-lista">
+                    <table class="tabela-consultas">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Horário</th>
+                                <th>Médico</th>
+                                <th>Especialidade</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>15/04/2026</td>
+                                <td>09:00</td>
+                                <td>Dr. Carlos Silva</td>
+                                <td>Cardiologia</td>
+                                <td><span class="status confirmado">Confirmado</span></td>
+                            </tr>
+                            <tr>
+                                <td>20/04/2026</td>
+                                <td>14:30</td>
+                                <td>Dra. Ana Oliveira</td>
+                                <td>Pediatria</td>
+                                <td><span class="status agendado">Agendado</span></td>
+                            </tr>
+                            <tr>
+                                <td>25/04/2026</td>
+                                <td>10:00</td>
+                                <td>Dr. Roberto Santos</td>
+                                <td>Dermatologia</td>
+                                <td><span class="status pendente">Pendente</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="ver-mais">
+                    <a href="ver-consultas.html">Ver todas as consultas →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO DE INFORMAÇÕES ADICIONAIS -->
+        <div class="info-cards">
+            <div class="info-card">
+                <h3>🏥 Horário de Funcionamento</h3>
+                <p>Segunda a Sexta: 07h às 19h</p>
+                <p>Sábado: 08h às 12h</p>
+                <p>Domingo: Fechado</p>
+            </div>
+            <div class="info-card">
+                <h3>📞 Contato de Emergência</h3>
+                <p>Telefone: (11) 4002-8922</p>
+                <p>WhatsApp: (11) 99999-9999</p>
+                <p>Email: contato@inovamed.com</p>
+            </div>
+            <div class="info-card">
+                <h3>📍 Unidades</h3>
+                <p>Unidade Central - Av. Paulista, 1000</p>
+                <p>Unidade Zona Sul - R. Vergueiro, 500</p>
+                <p>Unidade Zona Norte - Av. Cruzeiro do Sul, 200</p>
+            </div>
+        </div>
+
+        <!-- SEÇÃO DE CAMPANHAS - 8 QUADRADOS (4x4 COM GRID) -->
+        <section class="campanhas">
+            <h2 style="text-align: center; font-size: 32px; color: #0d47a1; margin-bottom: 10px;">O que Oferecemos:</h2>
+            
+            <div class="campanhas-grid">
+                <!-- Campanha 1 -->
+                <a href="campanhas/vacinacao.html" class="campanha-card">
+                    <div class="campanha-imagem" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                        💉
+                    </div>
+                    <div class="campanha-conteudo">
+                        <h3>Campanha de Vacinação</h3>
+                        <p>Proteja-se contra a Gripe. Vacina disponível!</p>
+                        <span class="campanha-saiba">Saiba mais →</span>
+                    </div>
+                </a>
+
+                <!-- Campanha 2 -->
+                <a href="campanhas/checkup.html" class="campanha-card">
+                    <div class="campanha-imagem" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                    </div>
+                    <div class="campanha-conteudo">
+                        <h3>Check-up Gratuito</h3>
+                        <p>Cuide do seu coração. Agende já!</p>
+                        <span class="campanha-saiba">Saiba mais →</span>
+                    </div>
+                </a>
+
+                <!-- Campanha 3 -->
+                <a href="campanhas/odontologia.html" class="campanha-card">
+                    <div class="campanha-imagem" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                        🦷
+                    </div>
+                    <div class="campanha-conteudo">
+                        <h3>Odontologia Especializada</h3>
+                        <p>50% off na primeira consulta!</p>
+                        <span class="campanha-saiba">Saiba mais →</span>
+                    </div>
+                </a>
+
+                <!-- Campanha 4 -->
+                <a href="campanhas/nutricao.html" class="campanha-card">
+                    <div class="campanha-imagem" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">
+                        🥗
+                    </div>
+                    <div class="campanha-conteudo">
+                        <h3>Nutrição Esportiva</h3>
+                        <p>Primeira consulta com 30% OFF</p>
+                        <span class="campanha-saiba">Saiba mais →</span>
+                    </div>
+                </a>
+
+                <!-- Campanha 5 -->
+                <a href="campanhas/saude-mental.html" class="campanha-card">
+                    <div class="campanha-imagem" style="background: linear-gradient(135deg, #fa709a, #fee140);">
+                        🧠
+                    </div>
+                    <div class="campanha-conteudo">
+                        <h3>Saúde Mental</h3>
+                        <p>Acompanhamento psicológico online</p>
+                        <span class="campanha-saiba">Saiba mais →</span>
+                    </div>
+                </a>
+
+                <!-- Campanha 6 -->
+                <a href="campanhas/fisioterapia.html" class="campanha-card">
+                    <div class="campanha-imagem" style="background: linear-gradient(135deg, #a8edea, #fed6e3);">
+                        🏃
+                    </div>
+                    <div class="campanha-conteudo">
+                        <h3>Fisioterapia</h3>
+                        <p>Reabilitação e prevenção de lesões</p>
+                        <span class="campanha-saiba">Saiba mais →</span>
+                    </div>
+                </a>
+
+                <!-- Campanha 7 (NOVA) -->
+                <a href="campanhas/oftalmologia.html" class="campanha-card">
+                    <div class="campanha-imagem" style="background: linear-gradient(135deg, #f6d365, #fda085);">
+                        👁️
+                    </div>
+                    <div class="campanha-conteudo">
+                        <h3>Campanha da Visão</h3>
+                        <p>Exame de vista gratuito. Agende sua avaliação!</p>
+                        <span class="campanha-saiba">Saiba mais →</span>
+                    </div>
+                </a>
+
+                <!-- Campanha 8 (NOVA) -->
+                <a href="campanhas/diabetes.html" class="campanha-card">
+                    <div class="campanha-imagem" style="background: linear-gradient(135deg, #fccb90, #d57eeb);">
+                        🩺
+                    </div>
+                    <div class="campanha-conteudo">
+                        <h3>Prevenção ao Diabetes</h3>
+                        <p>Check-up gratuito. Previna-se!</p>
+                        <span class="campanha-saiba">Saiba mais →</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- RODAPÉ COM CRÉDITOS -->
+        <div class="footer">
+            <div style="text-align: center;">
+                <p>InovaMed - Sistema de Gestão Hospitalar</p>
+                <p style="margin-top: 10px;">© 2026 InovaMed. Todos os direitos reservados.</p>
+                <p style="margin-top: 10px;">
+                    Desenvolvido por: 
+                    <strong>Giovana Vitoria</strong> | 
+                    <strong>Heloisa Soares</strong> | 
+                    <strong>Bheatriz Mello</strong>
+                </p>
+                <p style="margin-top: 5px; font-size: 12px;">
+                    <a href="termos.html">Termos de Uso</a> | 
+                    <a href="privacidade.html">Política de Privacidade</a>
+                </p>
+            </div>
+        </div>
     </div>
- 
-    <script src="../Backend/js/dashboard.js"> </script>
+
+    <script src="../Backend/js/dashboard.js"></script>
 </body>
 </html>
